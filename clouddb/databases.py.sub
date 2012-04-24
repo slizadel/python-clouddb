@@ -1,0 +1,35 @@
+# -*- encoding: utf-8 -*-
+from clouddb.base import SubResource, SubResourceManager
+#from clouddb import base
+
+class Database(SubResource):
+	instanceid = None
+	def __repr__(self):
+        	return "<Database: %s:%s:%s>" % (self.name, self.character_set, self.collate)
+
+	def __init__(self,
+		instanceid = None):
+		print instanceid
+		self.instanceid = instanceid
+		print instanceid
+
+class DatabaseManager(SubResourceManager):
+    	path = None
+    	type = "Database"
+    	resource = Database
+
+	def get_databases(self):
+		#print self.instanceid
+		print "Hi!"
+#class Database(base.Resource):
+#	def __repr__(self):
+#        	return "<Database: %s:%s:%s>" % (self.name, self.character_set, self.collate)
+
+
+#class DatabaseManager(base.ManagerWithFind):
+#	resource_class = Database
+	
+#	def get_databases( self, instanceid):
+#		print instanceid
+#		return [x for x in self._list("/instances/%s/databases" % instanceid, "databases")]
+
