@@ -24,7 +24,8 @@ class Instance(base.Resource):
         return self.manager.delete_database(self, database)
 
     def enable_root(self):
-        resp = self.manager._enable_root("/instances/%s/root" % self.id, '', "user")
+        resp = self.manager._enable_root("/instances/%s/root" % self.id, '',
+                                         "user")
         return resp.password
 
     def check_root(self):
@@ -81,7 +82,8 @@ class InstanceManager(base.ManagerWithFind):
 
     def create_databases(self, instance, databases):
         body = {"databases": databases}
-        return self._post("/instances/%s/databases" % base.getid(instance), body)
+        return self._post("/instances/%s/databases" % base.getid(instance),
+                          body)
 
     def delete_database(self, instance, databasename):
         self._delete("/instances/%s/databases/%s" % (instance.id,
@@ -93,7 +95,8 @@ class InstanceManager(base.ManagerWithFind):
         return self.api.users.list(base.getid(instance))
 
     def create_user(self, instance, username, password, databases):
-        return self.api.users.create(base.getid(instance), username, password, databases)
+        return self.api.users.create(base.getid(instance), username, password,
+                                     databases)
 
     def delete_user(self, instance, username):
         return self.api.users.delete(base.getid(instance), username)
