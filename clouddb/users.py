@@ -15,7 +15,8 @@ class UserManager(base.ManagerWithFind):
         dbs = []
         for database in databases:
             dbs.append({'name': database})
-        body = {'users': [{'name': username, 'password': password, 'databases': dbs}]}
+        body = {'users': [{'name': username, 'password': password,
+                            'databases': dbs}]}
         return self._post("/instances/%s/users" % instanceid, body)
 
     def delete(self, instanceid, username):
