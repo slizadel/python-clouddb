@@ -10,7 +10,7 @@ class FlavorManager(base.ManagerWithFind):
     resource_class = Flavor
 
     def list_flavors(self):
-        return [x for x in self._list("/flavors/detail", "flavors")]
+        return [x for x in self._list("/flavors", "flavors")]
 
     def get_flavor(self, flavorid):
         return self._get("/flavors/%s" % base.getid(flavorid), "flavor")

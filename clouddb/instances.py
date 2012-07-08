@@ -50,7 +50,7 @@ class InstanceManager(base.ManagerWithFind):
                          base.getid(instanceid), "instance")
 
     def get_instances(self):
-        return [x for x in self._list("/instances/detail", "instances")
+        return [x for x in self._list("/instances", "instances")
                    if x._info['status'] != "DELETED"]
 
     def create_instance(self, name, flavor=1, volume=1, databases=[]):
