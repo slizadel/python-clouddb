@@ -55,7 +55,17 @@ class Manager(object):
 
     def _list(self, url, response_key):
         resp, body = self.api.client.get(url)
-        return [self.resource_class(self, res) for res in body[response_key]]
+        results = body[response_key]
+        while 'links' in body:
+          next_url = (body.get('links')[0]).get('href')
+          from urlparse import urlparse
+          marker = urlparse(next_url).query
+          next_url = url + "?%s" % marker
+          resp_next, body_next = self.api.client.get(next_url)
+          for item in body_next[response_key]:
+            results.append(item)
+          body = body_next
+        return [self.resource_class(self, res) for res in results]
 
     def _get(self, url, response_key):
         resp, body = self.api.client.get(url)
