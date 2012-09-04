@@ -63,8 +63,8 @@ class CloudDB(object):
     def resize_instance(self, instanceid, size):
         self.instances.resize_instance(instanceid, size)
 
-    def create_instance(self, name, flavor=1, volume=1, databases=[]):
-        return self.instances.create_instance(name, flavor, volume, databases)
+    def create_instance(self, name, flavor=1, volume=1, databases=[], users=[]):
+        return self.instances.create_instance(name, flavor, volume, databases, users)
 
     def get_instance_status(self):
         return self.instances.get_instance_status()
