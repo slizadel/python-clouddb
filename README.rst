@@ -56,6 +56,23 @@ Create instance with two databases::
              {'name': 'db2', 'character_set': 'latin5', 'collate': 'latin5_turkish_ci'}]
   instance = cdb.create_instance('myinstance', 1, 1, databases=databases)
 
+Create instance with two databases and two users::
+
+  #!/usr/bin/env python
+  import clouddb
+  cdb = clouddb.CloudDB('username', 'apikey', 'region')
+
+  databases=[{'name': 'db1'}, 
+             {'name': 'db2', 'character_set': 'latin5', 'collate': 'latin5_turkish_ci'}]
+  users=[{"databases": [{"name": "db1"}],
+              "name": "db1user",
+              "password": "db1password"},
+         {"databases": [{"name": "db2"}],
+              "name": "db2user",
+              "password": "db2password"}
+        ]              
+  instance = cdb.create_instance('myinstance', 1, 1, databases=databases, users=users)
+
 Create database in existing instance::
 
   #!/usr/bin/env python

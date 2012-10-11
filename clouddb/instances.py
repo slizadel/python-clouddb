@@ -53,7 +53,7 @@ class InstanceManager(base.ManagerWithFind):
         return [x for x in self._list("/instances", "instances")
                    if x._info['status'] != "DELETED"]
 
-    def create_instance(self, name, flavor=1, volume=1, databases=[]):
+    def create_instance(self, name, flavor=1, volume=1, databases=[], users=[]):
         flavorref = '%s/flavors/%d' % (
                       self.api.client.region_account_url,
                       flavor)
@@ -61,6 +61,7 @@ class InstanceManager(base.ManagerWithFind):
                      'name': name,
                      'flavorRef': flavorref,
                      'databases': databases,
+                     'users': users,
                      'volume': {'size': volume}}}
         return self._create("/instances", body, "instance")
 
