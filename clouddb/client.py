@@ -63,6 +63,7 @@ class CloudDBClient (httplib2.Http):
 
         kwargs.setdefault('headers', {})['X-Auth-Token'] = self.auth_token
         kwargs['headers']['User-Agent'] = clouddb.consts.USER_AGENT
+        kwargs['headers']['Accept'] = 'application/json'
         if 'body' in kwargs:
             kwargs['headers']['Content-Type'] = 'application/json'
             kwargs['body'] = json.dumps(kwargs['body'])
