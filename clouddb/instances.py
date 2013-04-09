@@ -66,7 +66,6 @@ class InstanceManager(base.ManagerWithFind):
         return self._create("/instances", body, "instance")
 
     def delete_instance(self, instanceid):
-        self.api.client.authenticate()
         self._delete("/instances/%s" % base.getid(instanceid))
 
     def restart_instance(self, instanceid):
