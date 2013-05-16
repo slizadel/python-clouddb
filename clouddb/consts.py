@@ -16,6 +16,8 @@ REGION = {
     "chicago": "ord",
     "dallas": "dfw",
     "london": "lon",
+    "staging": "staging",
+    "sydney": "syd",
 }
 
 # Attributed allowed to be modified on databases
